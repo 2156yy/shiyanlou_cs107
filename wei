@@ -1,0 +1,11 @@
+
+
+'''prefix 缓存的key前缀 id 数据 ID, 一般是根据一定规则生成数据的id'''
+
+def get_data(prefix = "key", id):
+	data = memcached_get(prefix + id)
+	return data if data
+
+	data = get_date_from_database(id)
+	memcached_set(prefix + id, data)
+return data
